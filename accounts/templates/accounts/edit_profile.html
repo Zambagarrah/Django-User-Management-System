@@ -1,6 +1,17 @@
-<h2>Edit Profile</h2>
-<form method="POST">
-  {% csrf_token %}
-  <input type="email" name="email" value="{{ user.email }}" required>
-  <button type="submit">Save</button>
-</form>
+{% extends 'base.html' %}
+
+{% block title %}Edit Profile{% endblock %}
+
+{% block content %}
+<div class="custom-card">
+  <h2>Edit Profile</h2>
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" id="email" value="{{ user.email }}" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-info">Save Changes</button>
+  </form>
+</div>
+{% endblock %}
