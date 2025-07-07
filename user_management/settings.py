@@ -29,6 +29,7 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 ALLOWED_HOSTS = []
 
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Application definition
 
