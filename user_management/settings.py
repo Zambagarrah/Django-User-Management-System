@@ -29,8 +29,6 @@ AUTH_USER_MODEL = 'accounts.CustomUser'
 
 ALLOWED_HOSTS = []
 
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -42,6 +40,11 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     'accounts',
 ]
+
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+ALLOWED_HOSTS = ['.vercel.app']
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
