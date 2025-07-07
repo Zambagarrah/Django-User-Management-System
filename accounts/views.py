@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 
+
 def register_view(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -17,7 +18,10 @@ def register_view(request):
 
 @login_required
 def profile_view(request):
+    if not request.user.is_authenticated:
+        return redirect('login')
     return render(request, 'accounts/profile.html', {'user': request.user})
+
 
 @login_required
 def edit_profile(request):
@@ -26,6 +30,7 @@ def edit_profile(request):
         request.user.save()
         return redirect('profile')
     return render(request, 'accounts/edit_profile.html', {'user': request.user})
+
 
 @login_required
 def change_password(request):
@@ -38,6 +43,7 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'accounts/change_password.html', {'form': form})
+
 
 @login_required
 def verify_user(request):
