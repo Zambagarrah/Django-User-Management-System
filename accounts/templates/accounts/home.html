@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="custom-card text-center">
+  <h2>Welcome to the User Management System</h2>
+  <p class="mb-4">Navigate to different sections below</p>
+  <div class="d-grid gap-2 col-6 mx-auto">
+    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
+    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
+    <a href="{% url 'profile' %}" class="btn btn-info">View Profile</a>
+    <a href="/admin/" class="btn btn-warning">Admin Panel</a>
+  </div>
+</div>
+{% endblock %}
