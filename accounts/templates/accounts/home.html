@@ -10,16 +10,7 @@
       <p class="text-muted">Use the shortcuts below to manage users, profiles, and settings.</p>
       
       <div class="row mt-4">
-        <div class="col-6 col-md-3 mb-3">
-          <a href="{% url 'register' %}" class="btn btn-outline-primary w-100">
-            📝 Register
-          </a>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <a href="{% url 'login' %}" class="btn btn-outline-success w-100">
-            🔐 Login
-          </a>
-        </div>
+        {% if user.is_authenticated %}
         <div class="col-6 col-md-3 mb-3">
           <a href="{% url 'profile' %}" class="btn btn-outline-info w-100">
             👤 View Profile
@@ -30,6 +21,20 @@
             🛡️ Admin Panel
           </a>
         </div>
+        {% else %}
+        <div class="col-6 col-md-3 mb-3">
+          <a href="{% url 'register' %}" class="btn btn-outline-primary w-100">
+            📝 Register
+          </a>
+        </div>
+        <div class="col-6 col-md-3 mb-3">
+          <a href="{% url 'login' %}" class="btn btn-outline-success w-100">
+            🔐 Login
+          </a>
+        </div>
+        {% endif %}
+
+
       </div>
 
       <hr class="my-4">
