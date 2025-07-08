@@ -7,38 +7,39 @@
   <div class="col-md-8">
     <div class="custom-card text-center">
       <h2 class="mb-3 text-primary">👋 Welcome to Your Dashboard</h2>
+      {% if user.is_authenticated %}
+        <p class="text-muted">Hello, <strong>{{ user.username }}</strong>! Glad to see you back.</p>
+      {% endif %}
       <p class="text-muted">Use the shortcuts below to manage users, profiles, and settings.</p>
-      
-      <div class="row mt-4">
+
+      <div class="d-flex flex-wrap justify-content-center gap-3 mt-4">
         {% if user.is_authenticated %}
-        <div class="col-6 col-md-3 mb-3">
-          <a href="{% url 'profile' %}" class="btn btn-outline-info w-100">
+          <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-outline-danger btn-lg px-4">
+              🚪 Logout
+            </button>
+          </form>
+          <a href="{% url 'profile' %}" class="btn btn-outline-info btn-lg px-4">
             👤 View Profile
           </a>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <a href="/admin/" class="btn btn-outline-warning w-100">
+          <a href="/admin/" class="btn btn-outline-warning btn-lg px-4">
             🛡️ Admin Panel
           </a>
-        </div>
         {% else %}
-        <div class="col-6 col-md-3 mb-3">
-          <a href="{% url 'register' %}" class="btn btn-outline-primary w-100">
+          <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg px-4">
             📝 Register
           </a>
-        </div>
-        <div class="col-6 col-md-3 mb-3">
-          <a href="{% url 'login' %}" class="btn btn-outline-success w-100">
+          <a href="{% url 'login' %}" class="btn btn-outline-success btn-lg px-4">
             🔐 Login
           </a>
-        </div>
         {% endif %}
-
-
       </div>
 
       <hr class="my-4">
-
+      <footer class="text-muted small">
+        Django User Management System · Built with ❤️ and Bootstrap
+      </footer>
     </div>
   </div>
 </div>

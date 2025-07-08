@@ -1,17 +1,33 @@
 {% extends 'base.html' %}
-
 {% block title %}Edit Profile{% endblock %}
 
 {% block content %}
-<div class="custom-card">
-  <h2>Edit Profile</h2>
-  <form method="POST">
-    {% csrf_token %}
-    <div class="mb-3">
-      <label for="email" class="form-label">Email</label>
-      <input type="email" name="email" id="email" value="{{ user.email }}" class="form-control" required>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="custom-card">
+      <h2 class="text-primary text-center mb-4">🛠 Edit Your Profile</h2>
+      <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <h5 class="text-muted mb-3">👤 Account Info</h5>
+        {{ u_form.as_p }}
+
+        <hr>
+
+        <h5 class="text-muted mb-3">📸 Profile Details</h5>
+        {{ p_form.as_p }}
+
+        <hr class="my-4">
+
+        <button type="submit" class="btn btn-success w-100">Save Changes</button>
+      </form>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <a href="{% url 'change_password' %}" class="btn btn-outline-info">🔐 Change Password</a>
+      </div>
     </div>
-    <button type="submit" class="btn btn-info">Save Changes</button>
-  </form>
+  </div>
 </div>
 {% endblock %}
