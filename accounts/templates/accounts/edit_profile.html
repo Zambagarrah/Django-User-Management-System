@@ -3,29 +3,63 @@
 
 {% block content %}
 <div class="row justify-content-center">
-  <div class="col-md-8">
-    <div class="custom-card">
-      <h2 class="text-primary text-center mb-4">🛠 Edit Your Profile</h2>
-      <form method="POST" enctype="multipart/form-data">
+  <div class="col-md-9 col-lg-8">
+    <div class="custom-card p-4">
+      <h2 class="text-primary text-center mb-4">🛠 Update Your Profile</h2>
+
+      <form method="POST" enctype="multipart/form-data" class="needs-validation">
         {% csrf_token %}
-        
-        <h5 class="text-muted mb-3">👤 Account Info</h5>
-        {{ u_form.as_p }}
 
-        <hr>
+        <!-- Account Info Section -->
+        <div class="mb-4">
+          <h5 class="border-bottom pb-2 text-muted">👤 Account Details</h5>
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="username" class="form-label">Username</label>
+              {{ u_form.username }}
+            </div>
+            <div class="col-md-6">
+              <label for="email" class="form-label">Email</label>
+              {{ u_form.email }}
+            </div>
+          </div>
+        </div>
 
-        <h5 class="text-muted mb-3">📸 Profile Details</h5>
-        {{ p_form.as_p }}
+        <!-- Profile Info Section -->
+        <div class="mb-4">
+          <h5 class="border-bottom pb-2 text-muted">📸 Profile Information</h5>
+          <div class="text-center mb-3">
+            <img src="{{ user.profile.profile_image.url }}" class="rounded-circle border shadow-sm" width="100" height="100" alt="Profile Photo">
+          </div>
+          <div class="mb-3">
+            <label for="profile_image" class="form-label">Change Profile Photo</label>
+            {{ p_form.profile_image }}
+          </div>
+          <div class="mb-3">
+            <label for="full_name" class="form-label">Full Name</label>
+            {{ p_form.full_name }}
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            {{ p_form.location }}
+          </div>
+          <div class="mb-3">
+            <label for="bio" class="form-label">Bio</label>
+            {{ p_form.bio }}
+          </div>
+        </div>
 
-        <hr class="my-4">
-
-        <button type="submit" class="btn btn-success w-100">Save Changes</button>
+        <!-- Save Button -->
+        <div class="d-grid mt-4">
+          <button type="submit" class="btn btn-success">💾 Save Changes</button>
+        </div>
       </form>
 
-      <hr class="my-4">
-
-      <div class="text-center">
-        <a href="{% url 'change_password' %}" class="btn btn-outline-info">🔐 Change Password</a>
+      <!-- Password Change -->
+      <div class="mt-4 text-center">
+        <a href="{% url 'change_password' %}" class="btn btn-outline-info btn-sm">
+          🔐 Change Password
+        </a>
       </div>
     </div>
   </div>
