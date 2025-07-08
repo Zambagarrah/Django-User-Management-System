@@ -43,8 +43,12 @@ INSTALLED_APPS = [
 
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-ALLOWED_HOSTS = ['.vercel.app']
-
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+    'localhost',
+    '.vercel.app',
+    'django-user-management-system.onrender.com',
+]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",

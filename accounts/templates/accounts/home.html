@@ -3,14 +3,38 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-<div class="custom-card text-center">
-  <h2>Welcome to the User Management System</h2>
-  <p class="mb-4">Navigate to different sections below</p>
-  <div class="d-grid gap-2 col-6 mx-auto">
-    <a href="{% url 'register' %}" class="btn btn-primary">Register</a>
-    <a href="{% url 'login' %}" class="btn btn-success">Login</a>
-    <a href="{% url 'profile' %}" class="btn btn-info">View Profile</a>
-    <a href="/admin/" class="btn btn-warning">Admin Panel</a>
+<div class="row justify-content-center">
+  <div class="col-md-8">
+    <div class="custom-card text-center">
+      <h2 class="mb-3 text-primary">👋 Welcome to Your Dashboard</h2>
+      <p class="text-muted">Use the shortcuts below to manage users, profiles, and settings.</p>
+      
+      <div class="row mt-4">
+        <div class="col-6 col-md-3 mb-3">
+          <a href="{% url 'register' %}" class="btn btn-outline-primary w-100">
+            📝 Register
+          </a>
+        </div>
+        <div class="col-6 col-md-3 mb-3">
+          <a href="{% url 'login' %}" class="btn btn-outline-success w-100">
+            🔐 Login
+          </a>
+        </div>
+        <div class="col-6 col-md-3 mb-3">
+          <a href="{% url 'profile' %}" class="btn btn-outline-info w-100">
+            👤 View Profile
+          </a>
+        </div>
+        <div class="col-6 col-md-3 mb-3">
+          <a href="/admin/" class="btn btn-outline-warning w-100">
+            🛡️ Admin Panel
+          </a>
+        </div>
+      </div>
+
+      <hr class="my-4">
+
+    </div>
   </div>
 </div>
 {% endblock %}

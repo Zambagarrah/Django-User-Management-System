@@ -4,27 +4,40 @@
 
 {% block content %}
 <div class="row justify-content-center">
-  <div class="col-md-6">
+  <div class="col-md-7">
     <div class="custom-card">
       <div class="text-center mb-4">
         <h2 class="text-primary">📝 Create Account</h2>
         <p class="text-muted">Join our community. It's fast and free!</p>
       </div>
-      <form method="POST">
+
+      <form method="POST" novalidate>
         {% csrf_token %}
         {% for field in form %}
-          <div class="mb-3">
-            <label class="form-label">{{ field.label }}</label>
-            {{ field }}
-            {% if field.errors %}
-              <div class="text-danger">{{ field.errors }}</div>
-            {% endif %}
+          <div class="row mb-3 align-items-center">
+            <label for="{{ field.id_for_label }}" class="col-sm-4 col-form-label fw-semibold text-start">
+              {{ field.label }}
+            </label>
+            <div class="col-sm-8">
+              {{ field }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
           </div>
         {% endfor %}
         <button type="submit" class="btn btn-success w-100">Sign Up</button>
       </form>
-      <div class="mt-4 text-center">
-        <p class="text-muted">Already have an account? <a href="/accounts/login/" class="link-primary">Log in</a></p>
+
+      <hr class="my-4">
+
+      <div class="text-center">
+        <p class="text-muted">Already have an account? 
+          <a href="{% url 'login' %}" class="link-primary">Log in</a>
+        </p>
       </div>
     </div>
   </div>
